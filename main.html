@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>𝐅ʀᴇᴇᴅᴏᴍ</title>
+  <title>ᴄʏʙᴇʀ-ꜰʀᴇᴇᴅᴏᴍ</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
   <style>
     body {
@@ -12,7 +12,7 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      background: #000;
+      background: black;
       font-family: Arial, sans-serif;
       overflow: hidden;
     }
@@ -25,28 +25,22 @@
     }
 
     .box {
-      width: 340px;
+      width: 320px;
       padding: 20px;
-      background-color: #0a0a0a;
-      border-radius: 15px;
+      background-color: black;
+      border-radius: 10px;
       text-align: center;
-      box-shadow: 0 0 25px #ff0000, 0 0 50px #ff0000 inset;
+      box-shadow: 0 0 25px #00f2ff;
       z-index: 2;
-      animation: glowPulse 3s infinite alternate;
-    }
-
-    @keyframes glowPulse {
-      0% { box-shadow: 0 0 15px #ff3333, 0 0 40px #ff0000 inset; }
-      100% { box-shadow: 0 0 30px #ff0000, 0 0 60px #ff1a1a inset; }
     }
 
     @keyframes flicker {
       0%, 100% { opacity: 1; }
-      50% { opacity: 0.6; text-shadow: 0 0 10px #ff0000, 0 0 20px #ff1a1a; }
+      50% { opacity: 0.6; text-shadow: 0 0 5px #0ff, 0 0 20px #0ff; }
     }
 
     h3, h6 {
-      color: #ff1a1a;
+      color: #00f2ff;
       animation: flicker 2s infinite alternate;
       margin: 10px 0;
     }
@@ -64,14 +58,16 @@
       border: none;
       outline: none;
       box-sizing: border-box;
-      transition: all 0.3s ease-in-out;
-      border-radius: 0.8rem;
+      transition: none !important;
+      transform: none !important;
+      resize: none !important;
+      appearance: none;
     }
 
     .input-container input {
       width: 70%;
       border-radius: 0.8rem 0 0 0.8rem;
-      background: #fff0f0;
+      background: #e0f7ff;
       color: #000;
       padding-left: 1rem;
     }
@@ -79,17 +75,15 @@
     .input-container button {
       width: 30%;
       border-radius: 0 0.8rem 0.8rem 0;
-      background: #ff1a1a;
+      background: #00bfff;
       color: #fff;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 0 10px #ff0000;
     }
 
     .input-container button:hover {
-      background: #fff;
-      color: #ff0000;
-      transform: scale(1.05);
+      background: #00ffff;
+      color: #000;
     }
 
     a.centered-text {
@@ -106,18 +100,18 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: #000;
+      background: black;
       overflow: hidden;
       z-index: 1;
     }
 
     .dot {
       position: absolute;
-      width: 5px;
-      height: 5px;
-      background: #ff0000;
+      width: 4px;
+      height: 4px;
+      background: #00ffff;
       border-radius: 50%;
-      animation: rise 6s linear infinite, glow 2s infinite alternate;
+      animation: rise 5s linear infinite;
       opacity: 0.6;
     }
 
@@ -131,11 +125,6 @@
         opacity: 1;
       }
     }
-
-    @keyframes glow {
-      0% { box-shadow: 0 0 5px #ff3333; }
-      100% { box-shadow: 0 0 15px #ff0000; }
-    }
   </style>
 </head>
 <body>
@@ -144,9 +133,9 @@
   <div class="container">
     <div class="box" id="box">
       <div id="text">
-        <i class="fa fa-user" style="color:#ff1a1a;"></i>
-        <h3>ᴄʏʙᴇʀ ꜰʀᴇᴇᴅᴏᴍ ᴍɪɴɪ ʙᴏᴛ</h3>
-        <h6>❗ 𝐏ᴏᴡᴇʀᴅ ʙʏ 𝐅ʀᴇᴇᴅᴏᴍ ❗</h6>
+        <i class="fa fa-user" style="color:#00ffff;"></i>
+        <h3>ᴄʏʙᴇʀ-ꜰʀᴇᴇᴅᴏᴍ</h3>
+        <h6>ᴘᴏᴡᴇʀᴅ ʙʏ ꜰʀᴇᴇᴅᴏᴍ</h6>
         <h6>🔢 Enter your number with country code</h6>
 
         <div class="input-container">
@@ -171,11 +160,13 @@
       let obj = document.getElementById("copy");
       await navigator.clipboard.writeText(obj.innerText.replace('CODE: ', ''));
       obj.innerText = "COPIED";
-      obj.style = "color:yellow;font-weight:bold";
+      obj.style = "color:blue;font-weight:bold";
+      obj.size = "5";
       setTimeout(() => {
         obj.innerText = text;
-        obj.style = "color:red;font-weight:bold";
-      }, 700);
+        obj.style = "color:white;font-weight-bold";
+        obj.size = "5";
+      }, 500);
     }
 
     b.addEventListener("click", async (e) => {
@@ -192,7 +183,7 @@
         a.innerHTML = '<a style="color:white;font-weight:bold">Please Wait...</a><br><br>';
         let { data } = await axios(`/code?number=${number}`);
         let code = data.code || "Service Unavailable";
-        a.innerHTML = `<font id="copy" onclick="Copy()" style="color:red;font-weight:bold;cursor:pointer" size="5">CODE: <span style="color:white;">${code}</span></font><br><br><br>`;
+        a.innerHTML = `<font id="copy" onclick="Copy()" style="color:red;font-weight:bold" size="5">CODE: <span style="color:white;">${code}</span></font><br><br><br>`;
       }
     });
 
@@ -202,7 +193,7 @@
       const dot = document.createElement("div");
       dot.classList.add("dot");
       dot.style.left = Math.random() * 100 + "vw";
-      dot.style.animationDuration = 3 + Math.random() * 6 + "s";
+      dot.style.animationDuration = 3 + Math.random() * 5 + "s";
       dot.style.animationDelay = Math.random() * 5 + "s";
       bg.appendChild(dot);
     }
